@@ -1,6 +1,6 @@
 {
-  "name": "@segment/consent-manager",
-  "version": "1.3.0",
+  "name": "@onedox/consent-manager",
+  "version": "1.3.0-0.1.0",
   "description": "Drop-in consent management plugin for analytics.js",
   "keywords": [
     "gdpr",
@@ -8,7 +8,7 @@
     "analytics",
     "analytics.js"
   ],
-  "repository": "segmentio/consent-manager",
+  "repository": "onedox/consent-manager",
   "license": "MIT",
   "main": "commonjs/index.js",
   "module": "esm/index.js",
