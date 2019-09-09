@@ -5,3 +5,5 @@
 
 # IDE
 .vscode/
+
+yarn-error.log

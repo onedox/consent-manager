@@ -32,7 +32,8 @@ export default class ConsentManagerBuilder extends Component {
     shouldRequireConsent: PropTypes.func,
     initialPreferences: PropTypes.object,
     mapCustomPreferences: PropTypes.func,
-    cookieDomain: PropTypes.string
+    cookieDomain: PropTypes.string,
+    customSegmentOrigin: PropTypes.string
   }
 
   static defaultProps = {
@@ -41,7 +42,8 @@ export default class ConsentManagerBuilder extends Component {
     shouldRequireConsent: () => true,
     initialPreferences: {},
     mapCustomPreferences: undefined,
-    cookieDomain: undefined
+    cookieDomain: undefined,
+    customSegmentOrigin: undefined
   }
 
   state = {
@@ -96,14 +98,15 @@ export default class ConsentManagerBuilder extends Component {
       otherWriteKeys,
       shouldRequireConsent,
       initialPreferences,
-      mapCustomPreferences
+      mapCustomPreferences,
+      customSegmentOrigin
     } = this.props
     // TODO: add option to run mapCustomPreferences on load so that the destination preferences automatically get updated
     const {destinationPreferences, customPreferences} = loadPreferences()
 
     const [isConsentRequired, destinations] = await Promise.all([
       shouldRequireConsent(),
-      fetchDestinations([writeKey, ...otherWriteKeys])
+      fetchDestinations([writeKey, ...otherWriteKeys], customSegmentOrigin)
     ])
 
     const newDestinations = getNewDestinations(

@@ -1,9 +1,9 @@
 import fetch from 'isomorphic-fetch'
 import {flatten, sortedUniqBy, sortBy} from 'lodash'
 
-async function fetchDestinationForWriteKey(writeKey) {
+async function fetchDestinationForWriteKey(writeKey, segmentOrigin) {
   const res = await fetch(
-    `https://cdn.segment.com/v1/projects/${writeKey}/integrations`
+    `${segmentOrigin}/v1/projects/${writeKey}/integrations`
   )
 
   if (!res.ok) {
@@ -25,10 +25,18 @@ async function fetchDestinationForWriteKey(writeKey) {
   return destinations
 }
 
-export default async function fetchDestinations(writeKeys) {
+export default async function fetchDestinations(
+  writeKeys,
+  customSegmentOrigin
+) {
   const destinationsRequests = []
   for (const writeKey of writeKeys) {
-    destinationsRequests.push(fetchDestinationForWriteKey(writeKey))
+    destinationsRequests.push(
+      fetchDestinationForWriteKey(
+        writeKey,
+        customSegmentOrigin || 'https://cdn.segment.com'
+      )
+    )
   }
 
   let destinations = flatten(await Promise.all(destinationsRequests))

@@ -394,6 +394,13 @@ Type: `function(object|boolean)`
 
 Saves the preferences currently in state to a cookie called `tracking-preferences`, triggers an identify call with `destinationTrackingPreferences` and `customTrackingPreferences` traits and then reloads analytics.js using the new preferences. It can also be passed preferences like [setPreferences][] to do a final update before saving.
 
+##### customSegmentOrigin
+
+Type: `string`
+Default: `https://cdn.segment.com`
+
+Used to override the Segment API endpoint that is used to retrieve destinations.
+
 #### Example
 
 For a more detailed/advanced example, checkout the [ConsentManager implementation][].

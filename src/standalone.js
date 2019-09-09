@@ -36,6 +36,7 @@ if (window.consentManagerConfig) {
   props.preferencesDialogContent = dataset.preferencesdialogcontent
   props.cancelDialogTitle = dataset.canceldialogtitle
   props.cancelDialogContent = dataset.canceldialogcontent
+  props.customSegmentOrigin = dataset.customsegmentorigin
 }
 
 if (!props.container) {
